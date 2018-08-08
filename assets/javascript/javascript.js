@@ -22,9 +22,9 @@ function resetCrystals() {
 
 
 function resetHtml() {
-    $('.goalNumber').html(goal);
+    $('.goalNumber').html("<p>Goal:" + " " + goal + "</p>");
     $('.winsLosses').html("<p>Wins:" + wins + "</p>" + "<p>Losses:" + losses + "</p>");
-    $('.score').html(score);
+    $('.score').html("<p>Score:" + " " + score + "</p>");
     $('.crystals').empty();
 }
 
@@ -55,13 +55,11 @@ function crystalButton() {
 function winner() {
     alert("You Win");
     wins++;
-    resetGame();
 }
 
 function loser() {
     alert("You Lose");
     losses++;
-    resetGame();
 }
 
 $(document).on('click', ".crystal", crystalButton);

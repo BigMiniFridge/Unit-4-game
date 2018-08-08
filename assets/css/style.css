@@ -1,17 +1,19 @@
-body {
+/* Need to fix background image to fill, might just not be big enough */
+body, html {
     background-image: url("../images/cave.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-shadow: 0 0 3px rgb(255, 94, 0), 0 0 5px rgb(255, 0, 242);
 }
 
-h1, h3, span, goalNumber, score {
+/* Need to figure out how to make Wins Losses bigger font */
+h1, h3, span, .goalNumber, .score, .winsLosses, {
     font-size:30px;
     text-shadow: 0 0 3px rgb(255, 94, 0), 0 0 5px rgb(255, 0, 242);
 }
 
 h1, ul {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 img {
