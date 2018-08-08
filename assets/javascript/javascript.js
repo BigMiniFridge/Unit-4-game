@@ -1,109 +1,67 @@
-var goal = 0;
+var goal = "";
 var wins = 0;
 var losses = 0;
 var score = 0;
-var images = ['assets/images/diamond.png', 'assets/images/emerald.png', 'assets/images/ruby.png', 'assets/images/sapphire.png']
+var images = ['assets/images/sapphire.png', 'assets/images/emerald.png', 'assets/images/ruby.png', ' assets/images/diamond.png'];
 
-function randomGoal () {
-goal = Math.floor(Math.random() * 102) + 19;
+function randomGoal() {
+    goal = Math.floor(Math.random() * 102) + 19;
 }
 
 
-    // var sapphire = Math.floor(Math.random() * 11) + 1;
-    // var emerald = Math.floor(Math.random() * 11) + 1;
-    // var ruby = Math.floor(Math.random() * 11) + 1;
-    // var diamond = Math.floor(Math.random() * 11) + 1;
-    // $('#numberWins').html(wins);
-    // $('numberLosses').html(losses);
+function resetCrystals() {
+    for (var i = 0; i < images.length; i++) {
+        var crystal = $("<img>");
+        crystal.addClass("crystal");
+        crystal.attr("src", images[i]);
+        crystal.attr("value", (Math.floor(Math.random() * 12) + 1));
+        $(".crystals").append(crystal);
+    }
 
-    function resetCrystals() {
-        for (var i =0; i < images.length; i++){
-            var crystal = $("<img>");
-            crystal.addClass("crystal");
-			crystal.attr("src", images[i]);
-            crystal.attr("value", (Math.floor(Math.random() * 12) + 1));
-            $(".crystals").append(crystal);
-        }
+}
 
 
-        // random = Math.floor(Math.random() * 101) + 19;
-        // console.log(random);
-        // $('#goalNumber').text(goal);
-        // var sapphire = Math.floor(Math.random() * 11) + 1;
-        // var emerald = Math.floor(Math.random() * 11) + 1;
-        // var ruby = Math.floor(Math.random() * 11) + 1;
-        // var ndiamond = Math.floor(Math.random() * 11) + 1;
-      
-        // $('#totalScore').text(score);
+function resetHtml() {
+    $('.goalNumber').html(goal);
+    $('.winsLosses').html("<p>Wins:" + wins + "</p>" + "<p>Losses:" + losses + "</p>");
+    $('.score').html(score);
+    $('.crystals').empty();
+}
 
-    };
+function resetGame() {
+    randomGoal();
+    score = 0;
+    resetHtml();
+    resetCrystals();
+}
 
-    function resetHtml () {
+randomGoal();
+resetHtml();
+resetCrystals();
 
-    };
+function crystalButton() {
+    score += parseInt($(this).attr("value"));
+    $(".score").html(score);
+    if (score == goal) {
+        winner();
+        resetGame();
+    }
+    else if (score > goal) {
+        loser();
+        resetGame();
+    }
+}
 
-    function resetGame (){
+function winner() {
+    alert("You Win");
+    wins++;
+    resetGame();
+}
 
-    };
+function loser() {
+    alert("You Lose");
+    losses++;
+    resetGame();
+}
 
-    function winner() {
-        alert("You Win");
-        wins++;
-        $('#numberWins').text(wins);
-        reset();
-    };
-
-    function loser() {
-        alert("You Lose");
-        losses++;
-        $('numberLosses').text(losses);
-        reset();
-    };
-
-    $('#one').on('click', function () {
-        score = score + sapphire;
-        console.log("New score= " + score);
-        $('#totalScore').text(score);
-        if (score === random) {
-            winner();
-        }
-        else if (score > random) {
-            loser();
-        }
-    });
-
-    $('#two').on('click', function () {
-        score = score + emerald;
-        console.log("New score= " + score);
-        $('#totalScore').text(score);
-        if (score === random) {
-            winner();
-        }
-        else if (score > random) {
-            loser();
-        }
-    });
-
-    $('#three').on('click', function () {
-        score = score + ruby;
-        console.log("New score= " + score);
-        $('#totalScore').text(score);
-        if (score === random) {
-            winner();
-        }
-        else if (score > random) {
-            loser();
-        }
-    });
-
-    $('#four').on('click', function () {
-        score = score + diamond;
-        console.log("New score= " + score);
-        $('#totalScore').text(score);
-        if (score === random) {
-            winner();
-        }
-        else if (score > random) {
-            loser();
-        }
-    });
+$(document).on('click', ".crystal", crystalButton);

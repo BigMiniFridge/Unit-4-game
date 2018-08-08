@@ -5,7 +5,7 @@ body {
     text-shadow: 0 0 3px rgb(255, 94, 0), 0 0 5px rgb(255, 0, 242);
 }
 
-h1, h3, span {
+h1, h3, span, goalNumber, score {
     font-size:30px;
     text-shadow: 0 0 3px rgb(255, 94, 0), 0 0 5px rgb(255, 0, 242);
 }
